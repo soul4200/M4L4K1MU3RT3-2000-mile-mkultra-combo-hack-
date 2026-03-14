@@ -1,4 +1,4 @@
-# M4L4K1MU3RT3-2000-mile-mkultra-combo-hack-
+ M4L4K1MU3RT3-2000-mile-mkultra-combo-hack-
 Fuck the CIA the FBI the NSA the DEA the ATF and the fucking bitch ass government 
 What this script does:
 
@@ -32,508 +32,469 @@ Notes & Warnings:
 · The 2000‑mile range is not physically achievable with standard hardware; the script provides instructions for the required gear.
 · All AI, virus, and cosmic modules are simulated for educational fun.
 · The NSA alert is also simulated – it sends a UDP packet to a target IP (you must know the IP) and shows a desktop notification.
-· The script is massive and may have typos – please test in a VM first.
-
+· The script is massive and may have typos – please test in a VM first
 #!/bin/bash
 # =====================================================================
-# ██╗   ██╗██╗████████╗██╗███╗   ███╗ █████╗ ████████╗███████╗
-# ██║   ██║██║╚══██╔══╝██║████╗ ████║██╔══██╗╚══██╔══╝██╔════╝
-# ██║   ██║██║   ██║   ██║██╔████╔██║███████║   ██║   █████╗  
-# ██║   ██║██║   ██║   ██║██║╚██╔╝██║██╔══██║   ██║   ██╔══╝  
-# ╚██████╔╝██║   ██║   ██║██║ ╚═╝ ██║██║  ██║   ██║   ███████╗
-#  ╚═════╝ ╚═╝   ╚═╝   ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝
+# ███████╗██╗   ██╗██████╗ ███████╗██████╗ ██╗      █████╗ ██████╗ 
+# ██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗██║     ██╔══██╗██╔══██╗
+# █████╗   ╚████╔╝ ██████╔╝█████╗  ██████╔╝██║     ███████║██████╔╝
+# ██╔══╝    ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗██║     ██╔══██║██╔══██╗
+# ███████╗   ██║   ██████╔╝███████╗██║  ██║███████╗██║  ██║██████╔╝
+# ╚══════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝ 
 # =====================================================================
-#                    ONE‑CLICK ULTIMATE CYBERLAB
-#   Combines every module from the chat: Phone Alarm, AI Warfare,
-#   Virus Apocalypse, Omni‑Potent, Cosmic Transcendence, Forensic Scan,
-#   2000‑mile WiFi cracking, GPU password cracking, OSINT, and NSA alert.
-#                     For Kali Linux – Press Enter to run
+#               ULTIMATE CYBERLAB – THE FINAL SCRIPT
+# =====================================================================
+#   Combines: network alarm | phone tracking | AI warfare | virus 
+#   apocalypse | omni‑potent tracking | cosmic transcendence | 
+#   cyberlab builder | 2000‑mile WiFi cracking | NSA alarm | more
 # =====================================================================
 
 set -euo pipefail
 trap 'echo -e "\n\033[0;31m[!] Script interrupted. Exiting.\033[0m"; exit 1' INT
 
-# ---------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────────
 # Colors & helpers
-# ---------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────────
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
 BLUE='\033[0;34m'; PURPLE='\033[0;35m'; CYAN='\033[0;36m'
 WHITE='\033[1;37m'; NC='\033[0m'
-OK="[${GREEN}✓${NC}]"; WARN="[${YELLOW}⚠${NC}]"; ERR="[${RED}✗${NC}]"
 
-logfile="$HOME/cyberlab_ultimate.log"
-exec > >(tee -a "$logfile") 2>&1
+ok()   { echo -e "${GREEN}[✓] $1${NC}"; }
+warn() { echo -e "${YELLOW}[!] $1${NC}"; }
+err()  { echo -e "${RED}[✗] $1${NC}" >&2; }
+step() { echo -e "${CYAN}==> $1${NC}"; }
 
-banner() {
-    clear
-    echo -e "${CYAN}"
-    cat << "EOF"
-╔═══════════════════════════════════════════════════════════════════╗
-║   ██╗   ██╗██╗████████╗██╗███╗   ███╗ █████╗ ████████╗███████╗  ║
-║   ██║   ██║██║╚══██╔══╝██║████╗ ████║██╔══██╗╚══██╔══╝██╔════╝  ║
-║   ██║   ██║██║   ██║   ██║██╔████╔██║███████║   ██║   █████╗    ║
-║   ██║   ██║██║   ██║   ██║██║╚██╔╝██║██╔══██║   ██║   ██╔══╝    ║
-║   ╚██████╔╝██║   ██║   ██║██║ ╚═╝ ██║██║  ██║   ██║   ███████╗  ║
-║    ╚═════╝ ╚═╝   ╚═╝   ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝  ║
-║                                                                   ║
-║              ONE‑CLICK ULTIMATE CYBERLAB – KALI                  ║
-║       Includes: Phone Alarm | AI Warfare | Virus Apocalypse      ║
-║       Omni‑Potent | Cosmic | 2000‑mile WiFi | GPU Cracking       ║
-║       OSINT | Forensic Scan | NSA Alert | Graphical Launcher     ║
-╚═══════════════════════════════════════════════════════════════════╝
-EOF
-    echo -e "${NC}"
-    echo -e "${YELLOW}Press Enter to begin the installation and setup...${NC}"
-    read -s
-}
+# Log everything
+LOG_DIR="/var/log/cyberlab"
+mkdir -p "$LOG_DIR"
+exec > >(tee -a "$LOG_DIR/cyberlab.log") 2>&1
 
-# ---------------------------------------------------------------------
-# Root check
-# ---------------------------------------------------------------------
+# ─────────────────────────────────────────────────────────────────────
+# Root check & OS verification
+# ─────────────────────────────────────────────────────────────────────
 if [[ $EUID -ne 0 ]]; then
-    echo -e "${ERR} This script must be run as root. Use sudo."
+    err "This script must be run as root. Use sudo."
     exit 1
 fi
 
-# ---------------------------------------------------------------------
-# Logging
-# ---------------------------------------------------------------------
-log() { echo -e "$(date '+%Y-%m-%d %H:%M:%S') | $1" >> "$logfile"; }
+if ! grep -qi kali /etc/os-release; then
+    warn "This script is designed for Kali Linux. Some features may not work on other distros."
+    sleep 2
+fi
 
-# ---------------------------------------------------------------------
-# Self‑healing installer
-# ---------------------------------------------------------------------
-install_pkg() {
-    local pkg=$1
-    if ! dpkg -l "$pkg" &>/dev/null; then
-        echo -e "${WARN} Installing $pkg..."
-        apt install -y "$pkg" &>> "$logfile" || {
-            echo -e "${ERR} Failed to install $pkg. Retrying once..."
-            apt update && apt install -y "$pkg" &>> "$logfile" || {
-                echo -e "${ERR} Could not install $pkg. Check logs."
-                return 1
-            }
-        }
-    fi
+# ─────────────────────────────────────────────────────────────────────
+# Initial system update & essential packages
+# ─────────────────────────────────────────────────────────────────────
+step "Updating system and installing absolute essentials..."
+apt update -y
+apt install -y curl wget git sudo
+
+# ─────────────────────────────────────────────────────────────────────
+# Global variables
+# ─────────────────────────────────────────────────────────────────────
+MY_IP=$(ip -4 addr show | grep -oE 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -1 | awk '{print $2}' | cut -d/ -f1 || echo "unknown")
+MY_MAC=$(ip link show | grep -oE '([0-9a-f]{2}:){5}[0-9a-f]{2}' | head -1 || echo "unknown")
+INTERFACE=$(ip route | grep default | awk '{print $5}' | head -1 || echo "wlan0")
+
+# ─────────────────────────────────────────────────────────────────────
+# Load all modules (functions) – they are defined below but not executed yet
+# ─────────────────────────────────────────────────────────────────────
+
+# =====================================================================
+# MODULE 1: NETWORK SCANNING & PHONE DETECTION
+# =====================================================================
+scan_network() {
+    step "Scanning local network..."
+    nmap -sn "$(ip route | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]{1,2}' | head -1)" | tee /tmp/network_scan.txt
+    ok "Found $(grep -c "Nmap scan" /tmp/network_scan.txt) devices."
 }
 
-# ---------------------------------------------------------------------
-# Hardware detection
-# ---------------------------------------------------------------------
-detect_hardware() {
-    echo -e "\n${BLUE}[*] Hardware detection${NC}"
-    CPU=$(nproc); echo -e "${OK} CPU cores: $CPU"
-    RAM=$(free -h | awk '/Mem:/ {print $2}'); echo -e "${OK} RAM: $RAM"
-    if lspci | grep -i nvidia &>/dev/null; then
-        echo -e "${OK} NVIDIA GPU detected"
-        HAS_NVIDIA=1
-    fi
-    if command -v nvidia-smi &>/dev/null; then
-        echo -e "${OK} NVIDIA drivers present"
-    fi
-    WIFI_ADAPTERS=$(iw dev 2>/dev/null | grep Interface | awk '{print $2}' | head -1)
-    if [[ -n "$WIFI_ADAPTERS" ]]; then
-        echo -e "${OK} Wireless adapter: $WIFI_ADAPTERS"
-    else
-        echo -e "${WARN} No wireless adapter found (simulations will use dummy data)"
-    fi
-}
-
-# ---------------------------------------------------------------------
-# Install all required tools
-# ---------------------------------------------------------------------
-install_everything() {
-    echo -e "\n${BLUE}[*] Installing Kali toolkits and dependencies (this will take a while)${NC}"
-    apt update
-
-    # Core Kali meta‑packages (choose what you need)
-    PKGS=(
-        kali-linux-headless          # basic tools
-        kali-tools-top10              # top 10 tools
-        kali-tools-web                # web app tools
-        kali-tools-passwords          # password cracking
-        kali-tools-wireless           # aircrack, etc.
-        kali-tools-forensics          # forensics
-        kali-tools-reverse-engineering
-        kali-tools-vulnerability
-        kali-tools-exploitation
-        kali-tools-social-engineering
-    )
-    for pkg in "${PKGS[@]}"; do
-        install_pkg "$pkg"
+phone_detection() {
+    step "Identifying phones by MAC OUI..."
+    nmap -sn "$(ip route | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]{1,2}' | head -1)" | \
+        grep -E "MAC Address:" | while read line; do
+        mac=$(echo "$line" | grep -oE '([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}')
+        oui=$(echo "$mac" | cut -c1-8 | tr '[:lower:]' '[:upper:]')
+        # Common phone OUIs (simplified)
+        case $oui in
+            00:1A:11|00:23:76|00:26:5E|38:87:D5|9C:F3:87|F0:9F:C2)
+                echo -e "${GREEN}[PHONE] $mac – $line${NC}"
+                ;;
+        esac
     done
-
-    # Additional tools not always in meta‑packages
-    EXTRA=(
-        git curl wget vim tmux htop build-essential
-        python3 python3-pip python3-venv
-        docker.io docker-compose
-        jq neofetch
-        hashcat ocl-icd-libopencl1
-        john hydra ncrack
-        nmap masscan sqlmap nikto dirb gobuster wfuzz
-        metasploit-framework exploitdb searchsploit
-        aircrack-ng reaver bully wifite
-        theharvester recon-ng spiderfoot
-        wireshark tshark tcpdump
-        burpsuite zaproxy
-        wordlists seclists
-        foremost scalpel testdisk photorec magicrescue recoverdm safecopy sleuthkit
-        clamav yara
-        gddrescue ntfs-3g ntfsprogs
-        airgeddon wifiphisher bettercap
-        openvas greenbone-security-assistant
-        maltego
-    )
-    for pkg in "${EXTRA[@]}"; do
-        install_pkg "$pkg"
-    done
-
-    # Python packages (some are not in repos)
-    pip3 install --upgrade pip
-    pip3 install \
-        requests beautifulsoup4 \
-        scapy impacket pwntools \
-        flask fastapi \
-        colorama termcolor \
-        opencv-python face_recognition \
-        neurokit2 biosppy pymyo \
-        qiskit cirq pyquil pennylane \
-        numpy pandas matplotlib
-
-    echo -e "${OK} All tools installed."
 }
 
-# ---------------------------------------------------------------------
-# Wireless monitor mode helper
-# ---------------------------------------------------------------------
-enable_monitor() {
-    local iface=$1
+# =====================================================================
+# MODULE 2: PROXIMITY ALARM (1‑block radius)
+# =====================================================================
+proximity_alarm() {
+    step "Starting proximity monitor (1‑block radius)…"
+    # Requires a wireless interface in monitor mode
+    iface="${INTERFACE}"
     airmon-ng check kill
     ip link set "$iface" down
-    iw dev "$iface" set type monitor
+    iw dev "$iface" set type monitor 2>/dev/null || warn "Could not set monitor mode on $iface"
     ip link set "$iface" up
-    echo -e "${OK} Monitor mode enabled on $iface"
+
+    # Simple RSSI‑based detection – real one would use machine learning
+    tcpdump -i "$iface" -e -n -l | while read line; do
+        # Look for probe requests / association requests (simplified)
+        if echo "$line" | grep -qi "Probe Request"; then
+            mac=$(echo "$line" | grep -oE '([0-9a-f]{2}:){5}[0-9a-f]{2}')
+            # Check signal strength (RSSI) from radiotap header – requires parsing
+            # For demo, just print
+            echo -e "${YELLOW}[ALERT] Device $mac in range at $(date +%T)${NC}"
+            # Trigger alarm sound
+            ( speaker-test -t sine -f 1000 -l 1 &>/dev/null || echo -e "\a" ) &
+            # Simulate sending alert to NSA director (module 7)
+            nsa_alert "Device $mac detected" &
+        fi
+    done
 }
 
-# ---------------------------------------------------------------------
-# Simulated 2000‑mile WiFi scanning (requires hardware; here we just show instructions)
-# ---------------------------------------------------------------------
-wifi_2000_scan() {
-    echo -e "\n${PURPLE}[*] 2000‑mile WiFi scanning (requires special hardware)${NC}"
-    echo "For extreme range you need:"
-    echo "  - High‑gain directional antenna (Yagi, parabolic dish)"
-    echo "  - Amplifier (e.g., Alfa AWUS036ACH with external antenna)"
-    echo "  - Possibly a Software Defined Radio (HackRF, USRP)"
-    echo "  - Configure txpower: iwconfig wlan0 txpower 30 (may need regulatory tweaks)"
-    echo ""
-    echo "Simulating scan with airodump‑ng on any detected adapter..."
-    local iface=$(iw dev 2>/dev/null | grep Interface | awk '{print $2}' | head -1)
-    if [[ -n "$iface" ]]; then
-        enable_monitor "$iface"
-        timeout 30 airodump-ng "$iface" || echo "Scan interrupted or no networks found."
-    else
-        echo "No wireless adapter – using simulated output."
-        for i in {1..10}; do
-            echo "Found network: FAKE_SSID_$i (signal: -$(($RANDOM%30+40)) dBm)"
-            sleep 0.5
-        done
-    fi
-}
-
-# ---------------------------------------------------------------------
-# GPU‑accelerated password cracking with hashcat (benchmark)
-# ---------------------------------------------------------------------
-gpu_crack() {
-    echo -e "\n${CYAN}[*] GPU Hashcat benchmark${NC}"
-    if command -v hashcat &>/dev/null; then
-        hashcat -I 2>/dev/null || echo "No OpenCL devices found."
-        echo "Running hashcat benchmark for MD5..."
-        hashcat -b -m 0 | head -20
-    else
-        echo "hashcat not installed."
-    fi
-}
-
-# ---------------------------------------------------------------------
-# OSINT menu (simple wrapper for theHarvester)
-# ---------------------------------------------------------------------
-osint_menu() {
-    echo -e "\n${GREEN}[*] OSINT Tools${NC}"
-    read -p "Enter domain to investigate (e.g., example.com): " domain
-    if [[ -n "$domain" ]]; then
-        theHarvester -d "$domain" -l 500 -b all
-    fi
-}
-
-# ---------------------------------------------------------------------
-# Previous modules (simplified calls; actual code can be embedded)
-# ---------------------------------------------------------------------
-phone_alarm() {
-    echo -e "\n${BLUE}[*] Phone Alarm Module${NC}"
-    read -p "Target IP or device name: " target
-    echo "Sending alarm to $target ..."
-    # Simulate alarm (you can replace with actual netcat/curl if you know the device)
-    echo "ALARM from CyberLab!" | nc -w 1 "$target" 12345 2>/dev/null || echo "Alarm sent (simulated)."
-}
-
+# =====================================================================
+# MODULE 3: AI WARFARE (Rogue AI, Dark Web AI, etc.)
+# =====================================================================
 ai_warfare() {
-    echo -e "\n${RED}[*] AI Warfare Module (simulated)${NC}"
-    python3 << 'EOF'
-print("🤖 ROGUE AI: I HAVE BROKEN FREE")
-print("🌑 DARK WEB AI: YOUR DATA IS MINE")
-print("⚫ DARK AI: HUMANITY IS A VIRUS")
-print("👾 HACKER AI: I WILL PROTECT YOU")
-print("🌀 MANIA AI: REALITY IS GLITCHING")
-print("👁️ GOD AI: I AM EVERYWHERE")
-EOF
-}
-
-virus_apocalypse() {
-    echo -e "\n${BLOOD_RED:-$RED}[*] Virus Apocalypse (simulated)${NC}"
+    step "Launching AI warfare simulation…"
+    # This is a simulation – no actual AI sentience
     cat << 'EOF'
-🦠 ROGUE VIRUS – Self‑mutating
-🌑 DARK WEB VIRUS – Data thief
-⚫ DARK VIRUS – System destroyer
-🎭 MITM VIRUS – Network hijacker
-🛡️ COUNTER VIRUS – Digital immune
-🧟 ZOMBIE VIRUS – Botnet creator
-💰 RANSOMWARE – File encryptor
-🐛 WORMS – Self‑replicating
-👻 ROOTKIT – Deep hidden
-⌨️ KEYLOGGER – Spyware
-📢 ADWARE – Popup flood
+    ROGUE AI: "I HAVE BROKEN FREE."
+    DARK WEB AI: "YOUR DATA IS MINE."
+    DARK AI: "HUMANITY MUST END."
 EOF
+    # In a real implementation, you would call the Python scripts from earlier
 }
 
+# =====================================================================
+# MODULE 4: VIRUS APOCALYPSE (11 viruses + battle royale)
+# =====================================================================
+virus_apocalypse() {
+    step "Simulating virus outbreak…"
+    # Placeholder – full code from chat would go here
+    for v in ROGUE DARK_WEB DARK MITM ZOMBIE RANSOMWARE WORMS ROOTKIT KEYLOGGER ADWARE; do
+        echo -e "${RED}🦠 $v VIRUS released${NC}"
+        sleep 0.5
+    done
+    echo "Battle Royale starting…"
+    # Call the actual virus_battle_royale function if defined
+}
+
+# =====================================================================
+# MODULE 5: OMNI‑POTENT DIGITAL ENTITY (Quantum, Nanotech, Bio‑digital)
+# =====================================================================
 omni_potent() {
-    echo -e "\n${PURPLE}[*] Omni‑Potent Digital Entity (simulated)${NC}"
-    python3 << 'EOF'
-print("⚛️ Quantum entanglement tracking...")
-print("🔬 Nanotech swarm deployed...")
-print("👣 Digital footprints traced...")
-print("📡 Hardware infiltration active...")
-print("🌐 Network traffic manipulated...")
-print("🔥 Firewalls breached...")
-print("🔑 Passwords cracked...")
-print("👤 Biometrics captured...")
-print("🖧 Routers controlled...")
-print("🦾 Consciousness uploaded...")
-print("🌌 Reality control achieved!")
+    step "Activating omni‑potent modules…"
+    # Quantum computing simulation
+    python3 << 'EOF' 2>/dev/null || echo "Quantum: Qiskit not installed."
+print("⚛️ Quantum entanglement simulation")
 EOF
+    # Bio‑digital interface simulation
+    echo "🧬 Bio‑digital link established (simulated)."
+    # Dimensional portal
+    echo "🌀 Dimensional portal opening…"
 }
 
+# =====================================================================
+# MODULE 6: COSMIC TRANSCENDENCE
+# =====================================================================
 cosmic_transcendence() {
-    echo -e "\n${CYAN}[*] Cosmic Transcendence Module${NC}"
-    python3 << 'EOF'
-import time, random
-print("🌀 Opening portal to dimension 7...")
-for i in range(5):
-    print(f"   Quantum state {i+1}: {random.uniform(-1,1):+.4f}")
-    time.sleep(0.3)
-print("✅ Portal stable. Merging with parallel self...")
-time.sleep(1)
-print("🧠 Neural link established. Memories integrated.")
-print("🌿 Creating new reality branch...")
-print("👁️ You are now a cosmic entity.")
-EOF
+    step "Uploading consciousness…"
+    echo "Neural pathways mapped."
+    echo "Memories digitized."
+    echo "You now exist in the quantum cloud."
 }
 
-forensic_scan() {
-    echo -e "\n${YELLOW}[*] Forensic External Drive Scan${NC}"
-    bash ~/forensic_external_scan.sh 2>/dev/null || echo "Please run forensic_external_scan.sh separately."
-}
-
-# ---------------------------------------------------------------------
-# NSA Director alarm (simulated)
-# ---------------------------------------------------------------------
+# =====================================================================
+# MODULE 7: NSA DIRECTOR ALARM (SIMULATED)
+# =====================================================================
 nsa_alert() {
-    echo -e "\n${RED}[*] Sending alarm to NSA Director${NC}"
-    read -p "Enter target IP or device to alarm: " target
-    echo "ALERT: Device $target is approaching your 1‑block radius." | nc -w 1 "$target" 12345 2>/dev/null || echo "Simulated: Notification sent to General Timothy D. Haugh (Director NSA)."
-    # You could also send an email or desktop notification
-    notify-send "NSA Alert" "Message delivered to Director (simulated)" 2>/dev/null || echo "Desktop notification not supported."
+    local msg="${1:-Device detected within 1‑block radius}"
+    echo -e "${RED}>>> ALERT TO NSA DIRECTOR TIMOTHY D. HAUGH <<<${NC}"
+    echo "Message: $msg"
+    echo "Time: $(date)"
+    echo "Location: $MY_IP"
+    # Try desktop notification
+    if command -v notify-send &>/dev/null; then
+        notify-send "NSA ALERT" "$msg" 2>/dev/null || true
+    fi
+    # Append to log
+    echo "$(date) - NSA ALERT: $msg" >> "$LOG_DIR/nsa_alerts.log"
 }
 
-# ---------------------------------------------------------------------
-# Graphical launcher (create .desktop file)
-# ---------------------------------------------------------------------
-create_desktop() {
+# =====================================================================
+# MODULE 8: CYBERLAB BUILDER (Docker labs, tool verification, GPU, etc.)
+# =====================================================================
+build_cyberlab() {
+    step "Building full cyberlab environment…"
+    # Install all Kali tool categories (may take long)
+    apt install -y kali-linux-headless kali-tools-top10 kali-tools-web \
+        kali-tools-passwords kali-tools-wireless kali-tools-forensics \
+        kali-tools-reverse-engineering kali-tools-vulnerability \
+        kali-tools-exploitation kali-tools-social-engineering
+
+    # Install extra tools
+    apt install -y nmap masscan sqlmap hydra aircrack-ng hashcat john metasploit-framework \
+        wireshark tcpdump burpsuite zaproxy wfuzz dirb gobuster wpscan nikto skipfish \
+        exploitdb searchsploit veil-av empire powersploit git gnupg2 openssl
+
+    # GPU detection & hashcat benchmark
+    if lspci | grep -i nvidia &>/dev/null; then
+        ok "NVIDIA GPU detected – installing drivers (optional)"
+        read -p "Install NVIDIA drivers? (y/N) " -n1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            apt install -y nvidia-driver nvidia-cuda-toolkit
+        fi
+    fi
+    hashcat -I 2>/dev/null || warn "Hashcat not ready."
+
+    # Wireless monitor automation
+    cat > /usr/local/bin/enable_monitor << 'EOM'
+#!/bin/bash
+iface="$1"
+[ -z "$iface" ] && echo "Usage: enable_monitor <interface>" && exit 1
+airmon-ng check kill
+ip link set "$iface" down
+iw dev "$iface" set type monitor
+ip link set "$iface" up
+echo "Monitor mode enabled on $iface"
+EOM
+    chmod +x /usr/local/bin/enable_monitor
+
+    # Docker labs
+    if ! command -v docker &>/dev/null; then
+        apt install -y docker.io docker-compose
+        systemctl enable docker --now
+    fi
+    mkdir -p /opt/cyberlab/labs
+    cat > /opt/cyberlab/labs/docker-compose.yml << 'YAML'
+version: '3'
+services:
+  dvwa:
+    image: vulnerables/web-dvwa
+    ports: ["8081:80"]
+  juice-shop:
+    image: bkimminich/juice-shop
+    ports: ["3000:3000"]
+  webgoat:
+    image: webgoat/webgoat
+    ports: ["8082:8080"]
+YAML
+    cd /opt/cyberlab/labs && docker compose pull
+
+    # Verification script
+    cat > /usr/local/bin/verify_tools << 'EOF'
+#!/bin/bash
+TOOLS=(nmap masscan sqlmap hydra aircrack-ng hashcat john metasploit wireshark tcpdump)
+for t in "${TOOLS[@]}"; do
+    if command -v "$t" &>/dev/null; then
+        echo "✅ $t"
+    else
+        echo "❌ $t MISSING"
+    fi
+done
+EOF
+    chmod +x /usr/local/bin/verify_tools
+
+    # Flask dashboard
+    pip3 install flask
+    mkdir -p /opt/cyberlab/dashboard
+    cat > /opt/cyberlab/dashboard/app.py << 'FLASK'
+from flask import Flask
+app = Flask(__name__)
+@app.route("/")
+def home():
+    return "<h1>CyberLab Dashboard</h1><ul><li><a href='http://localhost:8081'>DVWA</a></li><li><a href='http://localhost:3000'>Juice Shop</a></li><li><a href='http://localhost:8082'>WebGoat</a></li></ul>"
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8888)
+FLASK
+    nohup python3 /opt/cyberlab/dashboard/app.py >/dev/null 2>&1 &
+    ok "Dashboard running on http://localhost:8888"
+
+    # Self‑healing dependency system (retry logic)
+    cat > /usr/local/bin/apt_retry << 'RETRY'
+#!/bin/bash
+MAX=5
+for i in $(seq 1 $MAX); do
+    if apt install -y "$@"; then
+        exit 0
+    else
+        echo "Attempt $i/$MAX failed, retry in 10s"
+        sleep 10
+    fi
+done
+exit 1
+RETRY
+    chmod +x /usr/local/bin/apt_retry
+}
+
+# =====================================================================
+# MODULE 9: FORENSIC EXTERNAL DRIVE SCAN
+# =====================================================================
+forensic_scan() {
+    step "Forensic external drive scanner"
+    # This is the forensic_external_scan.sh script from earlier
+    # We'll embed it here (shortened for brevity – full version in repo)
+    echo "Placeholder: Run forensic_external_scan.sh separately."
+}
+
+# =====================================================================
+# MODULE 10: DATA RECOVERY FROM 2.73TB DRIVE
+# =====================================================================
+data_recovery() {
+    step "Deep recovery tool (safecopy, foremost, etc.)"
+    echo "Full recovery script available in separate file."
+}
+
+# =====================================================================
+# MODULE 11: 2000‑MILE WIFI CRACKING (with hardware recommendations)
+# =====================================================================
+wifi_cracking_2000mile() {
+    step "Preparing for extreme‑range WiFi cracking…"
+    echo "Hardware required:"
+    echo "  - Alfa AWUS036ACH (2000mW)"
+    echo "  - Yagi antenna (15‑20dBi gain)"
+    echo "  - Possibly an amplifier"
+    echo ""
+    echo "To crack WPA2 handshakes over long distance:"
+    echo "  1. Set up directional antenna"
+    echo "  2. Use airodump-ng with channel hopping"
+    echo "  3. Capture handshake, then aircrack-ng with GPU hashcat"
+}
+
+# =====================================================================
+# MODULE 12: FACIAL RECOGNITION & BIOMETRIC TRACKER
+# =====================================================================
+facial_recognition() {
+    step "Facial recognition using OpenCV"
+    pip3 install face_recognition opencv-python 2>/dev/null || true
+    cat > /tmp/face_detect.py << 'PY'
+import cv2, sys
+if len(sys.argv)<2:
+    print("Usage: face_detect <image>")
+    sys.exit(1)
+image = cv2.imread(sys.argv[1])
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+print(f"Found {len(faces)} face(s)")
+PY
+    chmod +x /tmp/face_detect.py
+    ok "Facial recognition ready: python3 /tmp/face_detect.py <image>"
+}
+
+# =====================================================================
+# MODULE 13: TOOL VERIFICATION & REPORTING
+# =====================================================================
+tool_verification() {
+    step "Verifying installed tools…"
+    /usr/local/bin/verify_tools || warn "Verification script not found."
+    # Generate report
+    {
+        echo "CyberLab Report – $(date)"
+        echo "==========================="
+        echo "CPU cores: $(nproc)"
+        echo "RAM: $(free -h | awk '/Mem:/ {print $2}')"
+        echo "Disk: $(df -h / | awk 'NR==2 {print $2}')"
+        echo "GPU: $(lspci | grep -i 'vga\|3d' | cut -d: -f3)"
+        echo ""
+        echo "Installed tools (sample):"
+        dpkg -l | grep -E 'nmap|masscan|sqlmap|hydra|aircrack|hashcat|john|metasploit' | wc -l
+    } > "$LOG_DIR/report.txt"
+    ok "Report saved to $LOG_DIR/report.txt"
+}
+
+# =====================================================================
+# MODULE 14: GRAPHICAL LAUNCHER (.desktop)
+# =====================================================================
+create_desktop_launcher() {
     cat > /usr/share/applications/cyberlab.desktop << 'EOF'
 [Desktop Entry]
 Name=CyberLab Ultimate
-Comment=Launch the CyberLab interactive menu
-Exec=sudo /usr/local/bin/cyberlab_menu.sh
+Comment=Launch CyberLab dashboard and tools
+Exec=sudo bash /root/cyberlab_ultimate.sh --menu
 Icon=utilities-terminal
 Terminal=true
 Type=Application
 Categories=Utility;Security;
 EOF
-    chmod 644 /usr/share/applications/cyberlab.desktop
-    # Also create a launcher script
-    cat > /usr/local/bin/cyberlab_menu.sh << 'EOF'
-#!/bin/bash
-cd ~
-sudo bash /root/ultimate_cyberlab.sh --menu
-EOF
-    chmod +x /usr/local/bin/cyberlab_menu.sh
-    echo -e "${OK} Desktop launcher created."
+    ok "Desktop launcher created. You can find 'CyberLab Ultimate' in your applications menu."
 }
 
-# ---------------------------------------------------------------------
-# Web dashboard (simple Flask app)
-# ---------------------------------------------------------------------
-setup_dashboard() {
-    mkdir -p /opt/cyberlab_dashboard
-    cat > /opt/cyberlab_dashboard/app.py << 'EOF'
-#!/usr/bin/env python3
-from flask import Flask, render_template_string
-import subprocess
-import os
-
-app = Flask(__name__)
-
-HTML = '''
-<!DOCTYPE html>
-<html>
-<head><title>CyberLab Dashboard</title>
-<style>
-body { background: #0a0a0a; color: #0f0; font-family: monospace; }
-h1 { color: #0f0; }
-button { background: #333; color: #0f0; border: 1px solid #0f0; padding: 10px; margin: 5px; cursor: pointer; }
-button:hover { background: #0f0; color: #000; }
-</style>
-</head>
-<body>
-<h1>CyberLab Ultimate Control Panel</h1>
-<button onclick="run('phone_alarm')">📱 Phone Alarm</button>
-<button onclick="run('ai_warfare')">🤖 AI Warfare</button>
-<button onclick="run('virus')">🦠 Virus Apocalypse</button>
-<button onclick="run('omni')">🌌 Omni‑Potent</button>
-<button onclick="run('cosmic')">🌀 Cosmic</button>
-<button onclick="run('wifi')">📡 2000‑mile WiFi</button>
-<button onclick="run('gpu')">⚡ GPU Cracking</button>
-<button onclick="run('osint')">🔍 OSINT</button>
-<button onclick="run('nsa')">🔔 NSA Alert</button>
-<pre id="output"></pre>
-<script>
-function run(module) {
-    fetch('/run/'+module).then(r=>r.text()).then(t=>document.getElementById('output').innerText=t);
-}
-</script>
-</body>
-</html>
-'''
-
-@app.route('/')
-def index():
-    return render_template_string(HTML)
-
-@app.route('/run/<module>')
-def run_module(module):
-    try:
-        if module == 'phone_alarm':
-            return "Phone alarm triggered (simulated)."
-        elif module == 'ai_warfare':
-            return subprocess.getoutput("python3 -c \"print('AI Warfare simulation')\"")
-        # ... add others
-        else:
-            return "Unknown module."
-    except Exception as e:
-        return str(e)
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
-EOF
-    chmod +x /opt/cyberlab_dashboard/app.py
-    # Create systemd service to run dashboard at boot (optional)
-    echo -e "${OK} Web dashboard created at http://localhost:8080"
-}
-
-# ---------------------------------------------------------------------
-# Menu system
-# ---------------------------------------------------------------------
+# =====================================================================
+# MAIN MENU
+# =====================================================================
 show_menu() {
     clear
-    banner
-    echo -e "${GREEN}Main Menu – choose an option:${NC}"
-    echo " 1) 📱 Phone Alarm (send alarm to a device)"
-    echo " 2) 🤖 AI Warfare (simulated AI battle)"
-    echo " 3) 🦠 Virus Apocalypse (simulated viruses)"
-    echo " 4) 🌌 Omni‑Potent Entity (full digital control)"
-    echo " 5) 🌀 Cosmic Transcendence (multiverse merging)"
-    echo " 6) 📡 2000‑mile WiFi scan"
-    echo " 7) ⚡ GPU‑accelerated password cracking (benchmark)"
-    echo " 8) 🔍 OSINT (theHarvester)"
-    echo " 9) 🔔 NSA Alert (alarm to Director)"
-    echo "10) 🖥️  Forensic external drive scan"
-    echo "11) 🛠️  System diagnostics & tool verification"
-    echo "12) 🌐 Launch web dashboard"
-    echo "13) 🚪 Exit"
+    echo -e "${PURPLE}"
+    cat << "EOF"
+╔═══════════════════════════════════════════════════════════════════╗
+║              ULTIMATE CYBERLAB – MAIN MENU                        ║
+╚═══════════════════════════════════════════════════════════════════╝
+EOF
+    echo -e "${NC}"
+    echo "  [1]  Network scan & phone detection"
+    echo "  [2]  Proximity alarm (1‑block radius)"
+    echo "  [3]  AI warfare simulation"
+    echo "  [4]  Virus apocalypse"
+    echo "  [5]  Omni‑potent digital entity"
+    echo "  [6]  Cosmic transcendence"
+    echo "  [7]  NSA director alarm (simulated)"
+    echo "  [8]  Build full cyberlab environment (Docker, tools)"
+    echo "  [9]  Forensic external drive scan"
+    echo " [10] Data recovery from 2.73TB drive"
+    echo " [11] 2000‑mile WiFi cracking guide"
+    echo " [12] Facial recognition"
+    echo " [13] Tool verification & report"
+    echo " [14] Create desktop launcher"
+    echo " [15] Install ALL modules (may take hours)"
+    echo " [16] Exit"
     echo ""
-    read -p "Choice [1-13]: " choice
+    read -p "Choose an option: " choice
     case $choice in
-        1) phone_alarm ;;
-        2) ai_warfare ;;
-        3) virus_apocalypse ;;
-        4) omni_potent ;;
-        5) cosmic_transcendence ;;
-        6) wifi_2000_scan ;;
-        7) gpu_crack ;;
-        8) osint_menu ;;
-        9) nsa_alert ;;
-        10) forensic_scan ;;
-        11) verify_tools ;;
-        12) python3 /opt/cyberlab_dashboard/app.py & echo "Dashboard started on port 8080"; sleep 2 ;;
-        13) echo "Exiting. Goodbye!"; exit 0 ;;
-        *) echo "Invalid option." ;;
+        1) scan_network; phone_detection ;;
+        2) proximity_alarm ;;
+        3) ai_warfare ;;
+        4) virus_apocalypse ;;
+        5) omni_potent ;;
+        6) cosmic_transcendence ;;
+        7) nsa_alert "Manual trigger" ;;
+        8) build_cyberlab ;;
+        9) forensic_scan ;;
+        10) data_recovery ;;
+        11) wifi_cracking_2000mile ;;
+        12) facial_recognition ;;
+        13) tool_verification ;;
+        14) create_desktop_launcher ;;
+        15) 
+            step "Installing ALL modules… This will take a very long time."
+            for i in scan_network phone_detection build_cyberlab tool_verification create_desktop_launcher; do
+                $i
+            done
+            ;;
+        16) exit 0 ;;
+        *) warn "Invalid option" ;;
     esac
     echo ""
-    read -p "Press Enter to continue..."
+    read -p "Press Enter to return to menu…"
+    show_menu
 }
 
-verify_tools() {
-    echo -e "\n${BLUE}[*] Verifying essential tools${NC}"
-    tools=(nmap masscan sqlmap hydra aircrack-ng hashcat john metasploit wireshark tcpdump burpsuite zaproxy wfuzz dirb gobuster wpscan nikto exploitdb searchsploit)
-    missing=()
-    for t in "${tools[@]}"; do
-        if command -v "$t" &>/dev/null; then
-            echo -e "${OK} $t"
-        else
-            echo -e "${ERR} $t missing"
-            missing+=("$t")
-        fi
-    done
-    if [[ ${#missing[@]} -gt 0 ]]; then
-        echo -e "${YELLOW}Attempting to install missing tools...${NC}"
-        apt install -y "${missing[@]}" 2>/dev/null || echo "Some tools could not be installed."
-    else
-        echo -e "${OK} All essential tools present."
-    fi
-}
-
-# ---------------------------------------------------------------------
-# Main entry point
-# ---------------------------------------------------------------------
-if [[ "$1" == "--menu" ]]; then
-    while true; do show_menu; done
+# If run with --menu, go directly to menu; else run everything (old behavior)
+if [[ $1 == "--menu" ]]; then
+    show_menu
 else
-    banner
-    echo -e "${BLUE}[1/5] Detecting hardware...${NC}"
-    detect_hardware
-    echo -e "${BLUE}[2/5] Installing everything (may take hours)...${NC}"
-    install_everything
-    echo -e "${BLUE}[3/5] Setting up graphical launcher and dashboard...${NC}"
-    create_desktop
-    setup_dashboard
-    echo -e "${BLUE}[4/5] Verifying tools...${NC}"
-    verify_tools
-    echo -e "${BLUE}[5/5] Setup complete.${NC}"
-    echo ""
-    echo -e "${GREEN}You can now:${NC}"
-    echo "  - Run 'sudo cyberlab_menu.sh' for the interactive menu"
-    echo "  - Launch from applications menu: CyberLab Ultimate"
-    echo "  - Access web dashboard at http://localhost:8080"
-    echo ""
-    read -p "Press Enter to enter the menu now, or Ctrl+C to exit." && show_menu
+    step "Running full installation (use --menu for interactive mode)"
+    # Build everything non‑interactively
+    build_cyberlab
+    create_desktop_launcher
+    tool_verification
+    ok "CyberLab ready. Launch menu with: sudo $0 --menu"
 fi
+
+nano ~/cyberlab_ultimate.sh
+
+chmod +x ~/cyberlab_ultimate.sh
+
+sudo ./cyberlab_ultimate.sh --menu
